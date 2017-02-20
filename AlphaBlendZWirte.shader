@@ -14,6 +14,7 @@
 			
 			Tags{"LightMode" = "ForwardBase"}
 			ZWrite Off
+			Cull Off
 			Blend SrcAlpha OneMinusSrcAlpha
 			
 			CGPROGRAM
