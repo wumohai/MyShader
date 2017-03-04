@@ -159,5 +159,5 @@
 		}
 
 	} 
-	FallBack "Specular"
+	FallBack "Diffuse"
 }
