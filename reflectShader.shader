@@ -52,9 +52,9 @@ Shader "Custom/reflectShader" {
 				fixed3 diffuse = _LightColor0.rgb * _Color.rgb * max(0, dot(worldNormal, worldLightDir));
 				fixed3 reflection = texCUBE(_Cubemap, i.worldRefl).xyz * _ReflectColor.rgb;
 				UNITY_LIGHT_ATTENUATION(atten, i, i.worldPos);
-				fixed3 color = ambient + lerp(diffuse, reflection, _ReflectAmount) * atten;
+				//fixed3 color = ambient + lerp(diffuse, reflection, _ReflectAmount) * atten;
 				// lerp(a,b,f) = (1-f) * a + f*b;
-				// fixed3 color = (ambient + diffuse + reflection*_ReflectAmount ) * atten;
+				fixed3 color = (ambient + reflection*_ReflectAmount ) * atten; 
 				return fixed4(color,1);
 			}
 			ENDCG
