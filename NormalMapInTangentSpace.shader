@@ -8,7 +8,7 @@
 		_Specular ("Specular", Color) = (1.0, 1.0, 1.0, 1.0)
 	}
 	SubShader {
-		
+
 		Pass{
 			Tags { "RenderType"="Opaque" }
 			LOD 200
@@ -39,23 +39,23 @@
 				float3 lightDir:TEXCOORD1;
 				float3 viewDir:TEXCOORD2;
 			};
-			
+
 			v2f vert(a2v IN){
 				v2f o;
 				o.pos = mul(UNITY_MATRIX_MVP, IN.vertex);
 				o.uv.xy = TRANSFORM_TEX(IN.texcoord, _MainTex);
 				o.uv.zw = TRANSFORM_TEX(IN.texcoord, _BumpTex); //uv坐标 这里可以在IN结构体里面定义float uv_BumpTex;同样可以取到uv坐标
-				
-				//TANGENT_SPACE_ROTATION;  这个宏，等同于下面俩行
-				
-				float3 binormal = cross(normalize(IN.normal), normalize(IN.tangent.xyz)) * IN.tangent.w; 
-				float3x3 rotation = float3x3(IN.tangent.xyz, binormal, IN.normal);
 
+				//TANGENT_SPACE_ROTATION;  这个宏，等同于下面俩行
+				//IN.tangent.w 用来表示副切线的方向。
+				float3 binormal = cross(normalize(IN.normal), normalize(IN.tangent.xyz)) * IN.tangent.w;
+				float3x3 rotation = float3x3(IN.tangent.xyz, binormal, IN.normal);
+				
 				o.lightDir = mul(rotation, ObjSpaceLightDir(IN.vertex)).xyz;
 				o.viewDir = mul(rotation, ObjSpaceViewDir(IN.vertex)).xyz;
 				return o;
 			}
-			
+
 			fixed4 frag(v2f o):SV_Target{
 				fixed3 tangentLightDir = normalize(o.lightDir);
 				fixed3 tangentViewDir = normalize(o.viewDir);
@@ -81,6 +81,6 @@
 			}
 			ENDCG
 		}
-	} 
+	}
 	FallBack "Specular"
 }
