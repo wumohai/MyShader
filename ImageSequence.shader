@@ -53,5 +53,5 @@
 	
 	
 	} 
-	FallBack "Diffuse"
+	FallBack "Transparent/vertexLit"
 }
