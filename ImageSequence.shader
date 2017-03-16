@@ -1,8 +1,8 @@
 ﻿Shader "Custom/ImageSequence" {
 	Properties {
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_HorizontalAmount("Horizontal Amount", Float) = 4
-		_VerticalAmount("Vertical Amount", Float) = 4
+		_HorizontalAmount("Horizontal Amount", Float) = 8
+		_VerticalAmount("Vertical Amount", Float) = 8
 		_Speed("Speed", Range(10,100)) = 30
 	}
 	SubShader {
