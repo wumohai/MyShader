@@ -38,6 +38,7 @@
 				fixed3 finalColor = texColor.rgb * _Brightness;
 
 				fixed luminance = 0.21*texColor.r + 0.71 * texColor.g + 0.8*texColor.b;
+				// fixed luminance = luminance(texColor)
 				fixed3 luminanceColor = fixed3(luminance, luminance, luminance);
 				finalColor = lerp(luminanceColor, finalColor, _Saturation);
 
